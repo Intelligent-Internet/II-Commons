@@ -1,0 +1,14 @@
+# API Server settings
+server:
+  host: "127.0.0.1"
+  port: 5000
+
+# Directory to store downloaded datasets and for the API server to find search configurations.
+# This path is relative to this config file's location if not absolute.
+search_config_directory: "data_dir"
+
+# List of datasets to download from Hugging Face Hub.
+# For each dataset, both {name}.yaml and {name}.duckdb files are expected to exist in the repo.
+datasets:
+  - repo_id: "Intelligent-Internet/arxiv"
+    name: "duckdb/arxiv_snowflake2m_128_int8"

@@ -1,0 +1,32 @@
+data_source_name: "local_rag"
+database_file: "local_rag_snowflake2_128_int8.duckdb"
+database_writable: True
+
+meta_table:
+  name: "ts_data"
+  # join with embedding_table.id
+  id_column: "id"
+  tags_column: "tags"
+  text_column: "chunk_text"
+  retrieval_columns:
+    - "chunk_text"
+    - "url"
+    - "tags"
+  direct_search_columns:
+    - "doc_id"
+    - "hash"
+    - "url"
+
+embedding_table:
+  name: "ts_data_embed"
+  #emb_model: "jina-api"  #using jina api service
+  #query_task_type: "retrieval.query" #query task for jina v3
+  emb_model: "Snowflake/snowflake-arctic-embed-m-v2.0"
+  query_task_type: "query"
+  #mrl_dims: 128
+  #quantization: "int8"
+  # join with meta_table.id
+  id_column: "id"
+  embedding_column: "vector"
+
+
